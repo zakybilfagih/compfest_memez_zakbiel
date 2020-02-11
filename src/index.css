@@ -1,5 +1,14 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,500&display=swap");
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+html,
+body {
+    min-height: 100%;
+    width: 100%;
+    background: #14062f;
 }

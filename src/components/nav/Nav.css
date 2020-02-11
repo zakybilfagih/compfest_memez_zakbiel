@@ -1,0 +1,53 @@
+.Nav {
+    background: #302858;
+    width: 100%;
+    font-family: "Roboto";
+    padding: 15px 0;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+}
+
+.nav_logo {
+    font-size: 24px;
+    flex-basis: 25%;
+    background: linear-gradient(90deg, #ec006a -2.41%, #992f8b 98.62%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav_search {
+    background: white;
+    flex-basis: 40%;
+    border-radius: 6px;
+}
+
+.nav_search input {
+    width: 100%;
+    border: none;
+    padding: 7px 10px;
+    border-radius: 6px;
+}
+
+.nav_container {
+    max-width: 1300px;
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav_nav {
+    flex-basis: 25%;
+}
+
+.nav_nav ul {
+    display: flex;
+    list-style: none;
+    justify-content: flex-end;
+}
+
+.nav_nav ul li:not(:last-child) {
+    margin-right: 40px;
+}
