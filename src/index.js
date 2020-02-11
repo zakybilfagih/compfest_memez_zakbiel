@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./components/MemeApp";
+import MemeApp from "./components/meme-app";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<MemeApp />, document.getElementById("root"));

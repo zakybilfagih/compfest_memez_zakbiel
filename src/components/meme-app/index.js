@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./MemeApp.css";
 
+import Meme from "../meme";
+
 function MemeApp() {
     const [memes, setMemes] = useState({ loading: true, memes: [] });
     const [currPage, setCurrPage] = useState(1);
@@ -54,14 +56,20 @@ function MemeApp() {
                         currPage * memesPerPage
                     )
                     .map(items => {
-                        return <h1>{items.title}</h1>;
+                        return <Meme {...items} />;
                     })
             )}
-            <button onClick={fetchMemez}>fetch the memez</button>
-            <button onClick={prevMemez}>first page</button>
+            {/* <button onClick={fetchMemez}>fetch the memez</button>
+            <button onClick={() => setCurrPage(1)}>first page</button>
             <button onClick={prevMemez}>prev page</button>
             <button onClick={nextMemez}>next page</button>
-            <button onClick={setCurrPage(Math.ceil())}>last page</button>
+            <button
+                onClick={() =>
+                    setCurrPage(Math.ceil(memes.memes.length / memesPerPage))
+                }
+            >
+                last page
+            </button>
 
             <h1>{currPage}</h1>
             <input
@@ -69,7 +77,7 @@ function MemeApp() {
                 name="nums"
                 onChange={handlePerPage}
                 value={memesPerPage}
-            />
+            /> */}
         </div>
     );
 }
