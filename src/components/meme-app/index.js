@@ -47,32 +47,31 @@ function MemeApp() {
     const [intersect, setIntersect] = useState(false);
     const butRef = useRef();
     useLayoutEffect(() => {
-        const observer = new IntersectionObserver((entries, obs) => {
+        const observer = new IntersectionObserver(entries => {
             entries.forEach(e => setIntersect(e.isIntersecting));
         });
         if (!memes.loading && butRef.current) observer.observe(butRef.current);
     });
 
     useEffect(() => {
-        if (intersect) fetchMemez();
+        if (intersect && !search) fetchMemez();
     }, [intersect, search]);
 
     // func for fetching memez
     function fetchMemez() {
         setMemes(({ memes, count }) => ({ loading: true, memes, count }));
-        fetch("https://meme-api.herokuapp.com/gimme/10")
+        fetch("https://meme-api.herokuapp.com/gimme/30")
             .then(r => r.json())
             .then(d => {
                 d.loading = false;
-                if (d.memes) {
-                    setMemes(prev => {
-                        return {
-                            loading: d.loading,
-                            count: [...prev.memes, ...d.memes].length,
-                            memes: [...prev.memes, ...d.memes]
-                        };
-                    });
-                }
+                if (!d.memes) d = { loading: true, count: 0, memes: [] };
+                setMemes(prev => {
+                    return {
+                        loading: d.loading,
+                        count: [...prev.memes, ...d.memes].length,
+                        memes: [...prev.memes, ...d.memes]
+                    };
+                });
                 localStorage.setItem("memez_data", JSON.stringify(d));
             });
     }
