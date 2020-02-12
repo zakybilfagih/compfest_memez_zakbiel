@@ -15,10 +15,10 @@
 .memeGrid {
     columns: 3;
     column-fill: balance;
-    column-gap: 10px;
+    column-gap: 20px;
 }
 
-@media screen and (max-width: 764px) {
+@media screen and (max-width: 825px) {
     .memeGrid {
         columns: 2;
     }

@@ -8,7 +8,7 @@
     font-weight: 500;
 }
 .memeCard {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     overflow: hidden;
     border-radius: 10px;
 }
@@ -17,12 +17,17 @@
     position: relative;
 }
 
-.cardWrapper > img {
+.meme_imgwrapper > img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 10px;
     transition: all ease 0.4s;
+    display: block;
+}
+
+.meme_imgwrapper {
+    background: grey;
 }
 
 .caption {
@@ -30,7 +35,7 @@
     max-height: 0;
     overflow: hidden;
     color: white;
-    bottom: 3.5px;
+    bottom: 0;
     width: 100%;
     border-radius: 0 0 10px 10px;
     background: linear-gradient(180deg, #302858 0%, #490074 191.18%);
@@ -48,9 +53,9 @@
 }
 
 .cardWrapper:hover > .caption {
-    max-height: 80px;
+    max-height: 200px;
 }
 
-.cardWrapper:hover > img {
-    transform: translateY(-50px);
+.cardWrapper:hover img {
+    transform: translateY(-65px);
 }

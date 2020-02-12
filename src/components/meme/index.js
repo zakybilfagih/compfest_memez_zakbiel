@@ -6,7 +6,9 @@ function Meme({ subreddit, title, url }) {
     return (
         <div className="memeCard">
             <div className="cardWrapper">
-                <img src={url} alt="meme_img" />
+                <div className="meme_imgwrapper">
+                    <img src={url} alt="meme_img" />
+                </div>
                 <div className="caption">
                     <div className="captionContainer">
                         <div className="captionInfo">
