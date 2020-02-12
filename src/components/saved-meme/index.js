@@ -22,7 +22,6 @@ function SavedMeme({ toggleSaveMeme, saved, search }) {
 
     return (
         <div className="SavedMeme">
-            {console.log(search)}
             <div className="memeGrid">
                 {search
                     ? res.map((items, idx) => {
