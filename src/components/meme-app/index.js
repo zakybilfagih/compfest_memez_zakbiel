@@ -9,6 +9,7 @@ import {
 import "./MemeApp.css";
 
 import Meme from "../meme";
+import SavedMeme from "../saved-meme";
 import Nav from "../nav";
 
 function MemeApp() {
@@ -16,10 +17,13 @@ function MemeApp() {
     const [memes, setMemes] = useState({ loading: true, memes: [], count: 0 });
     useEffect(() => {
         if (localStorage.getItem("memez_data")) {
+            const memeFromLocal = JSON.parse(
+                localStorage.getItem("memez_data")
+            );
             setMemes({
                 loading: false,
-                count: JSON.parse(localStorage.getItem("memez_data")).count,
-                memes: JSON.parse(localStorage.getItem("memez_data")).memes
+                count: memeFromLocal.count,
+                memes: memeFromLocal.memes
             });
             return;
         }
@@ -65,6 +69,7 @@ function MemeApp() {
             .then(d => {
                 d.loading = false;
                 if (!d.memes) d = { loading: true, count: 0, memes: [] };
+
                 setMemes(prev => {
                     return {
                         loading: d.loading,
@@ -74,6 +79,17 @@ function MemeApp() {
                 });
                 localStorage.setItem("memez_data", JSON.stringify(d));
             });
+    }
+
+    // handle saving memes to saved list
+    const [saved, setSaved] = useState([]);
+    function toggleSaveMeme(meme) {
+        const getMeme = saved.filter(d => d.url === meme.url);
+        if (getMeme.length === 1) {
+            setSaved(prev => prev.filter(i => i.url !== meme.url));
+        } else {
+            setSaved(prev => [...prev, meme]);
+        }
     }
 
     return (
@@ -88,10 +104,22 @@ function MemeApp() {
                         <div className="memeGrid">
                             {search
                                 ? res.map((items, idx) => {
-                                      return <Meme {...items} key={idx} />;
+                                      return (
+                                          <Meme
+                                              {...items}
+                                              key={idx}
+                                              toggleSave={toggleSaveMeme}
+                                          />
+                                      );
                                   })
                                 : memes.memes.map((items, idx) => {
-                                      return <Meme {...items} key={idx} />;
+                                      return (
+                                          <Meme
+                                              {...items}
+                                              key={idx}
+                                              toggleSave={toggleSaveMeme}
+                                          />
+                                      );
                                   })}
                         </div>
                         {memes.loading && (
@@ -106,6 +134,9 @@ function MemeApp() {
                             fetch the memez
                         </button>
                     </div>
+                </Route>
+                <Route path="/saved">
+                    <SavedMeme {...{ toggleSaveMeme, saved, res, search }} />
                 </Route>
             </Switch>
         </Router>

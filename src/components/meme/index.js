@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./Meme.css";
 
-function Meme({ subreddit, title, url }) {
+function Meme({ subreddit, title, url, toggleSave }) {
+    const [saved, setSaved] = useState(false);
+
     return (
         <div className="memeCard">
             <div className="cardWrapper">
                 <div className="meme_imgwrapper">
-                    <img src={url} alt="meme_img" />
+                    <img height="250" src={url} alt="meme_img" />
                 </div>
                 <div className="caption">
                     <div className="captionContainer">
@@ -16,7 +18,15 @@ function Meme({ subreddit, title, url }) {
                             <p>/r/{subreddit}</p>
                         </div>
                         <div className="captionSave">
-                            <p>save me</p>
+                            <p
+                                onClick={() => {
+                                    setSaved(prev => !prev);
+                                    toggleSave({ title, subreddit, url });
+                                }}
+                            >
+                                save me
+                            </p>
+                            {saved && <p>im saved</p>}
                         </div>
                     </div>
                 </div>

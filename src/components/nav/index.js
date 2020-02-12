@@ -44,7 +44,17 @@ function Nav({ search, setSearch }) {
                                     Discover
                                 </NavLink>
                             </li>
-                            <li>Saved Meme</li>
+                            <li>
+                                <NavLink
+                                    to="/saved"
+                                    activeStyle={{
+                                        color: "white",
+                                        opacity: 1
+                                    }}
+                                >
+                                    Saved Meme
+                                </NavLink>
+                            </li>
                         </ul>
                     </div>
                 </div>
