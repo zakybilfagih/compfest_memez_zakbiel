@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/compfest_memez_zakbiel/static/css/main.72f38ca5.chunk.css",
+    "main.js": "/compfest_memez_zakbiel/static/js/main.dc48d7b5.chunk.js",
+    "main.js.map": "/compfest_memez_zakbiel/static/js/main.dc48d7b5.chunk.js.map",
+    "runtime-main.js": "/compfest_memez_zakbiel/static/js/runtime-main.7ef100d2.js",
+    "runtime-main.js.map": "/compfest_memez_zakbiel/static/js/runtime-main.7ef100d2.js.map",
+    "static/js/2.9ff543dc.chunk.js": "/compfest_memez_zakbiel/static/js/2.9ff543dc.chunk.js",
+    "static/js/2.9ff543dc.chunk.js.map": "/compfest_memez_zakbiel/static/js/2.9ff543dc.chunk.js.map",
+    "index.html": "/compfest_memez_zakbiel/index.html",
+    "precache-manifest.8963acaefb27d8b67e9489c495b7c6a0.js": "/compfest_memez_zakbiel/precache-manifest.8963acaefb27d8b67e9489c495b7c6a0.js",
+    "service-worker.js": "/compfest_memez_zakbiel/service-worker.js",
+    "static/css/main.72f38ca5.chunk.css.map": "/compfest_memez_zakbiel/static/css/main.72f38ca5.chunk.css.map",
+    "static/js/2.9ff543dc.chunk.js.LICENSE.txt": "/compfest_memez_zakbiel/static/js/2.9ff543dc.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7ef100d2.js",
+    "static/js/2.9ff543dc.chunk.js",
+    "static/css/main.72f38ca5.chunk.css",
+    "static/js/main.dc48d7b5.chunk.js"
+  ]
+}
