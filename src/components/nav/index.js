@@ -16,7 +16,28 @@ function Nav({ search, setSearch }) {
                         className="nav_toggle"
                         onClick={() => setToggle(prev => !prev)}
                     >
-                        <p>toggle</p>
+                        <svg
+                            width="26"
+                            height="13"
+                            viewBox="0 0 26 13"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <rect
+                                width="26"
+                                height="4"
+                                rx="2"
+                                transform="matrix(1 0 0 -1 0 4)"
+                                fill="white"
+                            />
+                            <rect
+                                width="26"
+                                height="4"
+                                rx="2"
+                                transform="matrix(1 0 0 -1 0 13)"
+                                fill="white"
+                            />
+                        </svg>
                     </div>
                 </div>
                 <div

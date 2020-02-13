@@ -1,6 +1,6 @@
 .SavedMeme {
     max-width: 1300px;
-    width: 95%;
+    width: 90%;
     margin: 0 auto;
     height: 100%;
     margin: 0 auto;
@@ -11,8 +11,27 @@
     columns: 3;
     column-gap: 20px;
     height: 200%;
+    position: relative;
 }
 
+.saved_msg {
+    font-family: "Roboto";
+    color: white;
+    margin-bottom: 33px;
+}
+
+.saved_msg h1 {
+    font-style: normal;
+    font-weight: bold;
+    text-align: center;
+    font-size: 22px;
+}
+
+.saved_msg p {
+    font-weight: 300;
+    text-align: center;
+    font-size: 19px;
+}
 @media screen and (max-width: 825px) {
     .memeGrid {
         columns: 2;

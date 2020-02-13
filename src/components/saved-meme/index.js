@@ -22,6 +22,10 @@ function SavedMeme({ toggleSaveMeme, saved, search }) {
 
     return (
         <div className="SavedMeme">
+            <div className="saved_msg">
+                <h1>Saved Memes</h1>
+                <p>These are the memes that you love</p>
+            </div>
             <div className="memeGrid">
                 {search
                     ? res.map((items, idx) => {
@@ -34,6 +38,7 @@ function SavedMeme({ toggleSaveMeme, saved, search }) {
                                       saved.filter(s => s.url === items.url)
                                           .length === 1
                                   }
+                                  overlay={true}
                               />
                           );
                       })
@@ -47,6 +52,7 @@ function SavedMeme({ toggleSaveMeme, saved, search }) {
                                       saved.filter(s => s.url === items.url)
                                           .length === 1
                                   }
+                                  overlay={true}
                               />
                           );
                       })}

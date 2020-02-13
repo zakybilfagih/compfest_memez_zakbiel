@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
+import React, { useEffect, useState, useLayoutEffect } from "react";
 import { Switch, Route, Redirect, useLocation } from "react-router-dom";
 
 import "./MemeApp.css";
@@ -13,6 +13,7 @@ function MemeApp() {
     // handle storing memez
     const [memes, setMemes] = useState({ loading: true, memes: [], count: 0 });
     useEffect(() => {
+        // caching last loaded meme data
         if (localStorage.getItem("memez_data")) {
             const memeFromLocal = JSON.parse(
                 localStorage.getItem("memez_data")
@@ -51,16 +52,13 @@ function MemeApp() {
 
     // handle scrolling ad infinitum
     const [intersect, setIntersect] = useState(false);
-    const butRef = useRef();
     useLayoutEffect(() => {
         if (location.pathname !== "/discover") return;
-        console.log("heyyy");
+        const trigger = document.querySelector("#triggerButton");
         const observer = new IntersectionObserver(entries => {
             entries.forEach(e => setIntersect(e.isIntersecting));
         });
-        setTimeout(() => {
-            butRef && observer.observe(butRef.current);
-        }, 4000);
+        trigger && setTimeout(() => observer.observe(trigger), 4000);
     }, [location]);
 
     useEffect(() => {
@@ -89,6 +87,16 @@ function MemeApp() {
 
     // handle saving memes to saved list
     const [saved, setSaved] = useState([]);
+    useEffect(() => {
+        const getSavedMemeFromLocal = localStorage.getItem("saved_meme");
+        if (getSavedMemeFromLocal)
+            setSaved(JSON.parse(getSavedMemeFromLocal).data);
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem("saved_meme", JSON.stringify({ data: saved }));
+    }, [saved]);
+
     function toggleSaveMeme(meme) {
         const getMeme = saved.filter(d => d.url === meme.url);
         if (getMeme.length === 1) {
@@ -120,6 +128,7 @@ function MemeApp() {
                                                       s => s.url === items.url
                                                   ).length === 1
                                               }
+                                              overlay={true}
                                           />
                                       );
                                   })
@@ -134,6 +143,7 @@ function MemeApp() {
                                                       s => s.url === items.url
                                                   ).length === 1
                                               }
+                                              overlay={true}
                                           />
                                       );
                                   })}
@@ -141,12 +151,12 @@ function MemeApp() {
                         {memes.loading && (
                             <div style={{ width: "100%", textAlign: "center" }}>
                                 <img
-                                    src="https://media.giphy.com/media/3o7bu3XilJ5BOiSGic/giphy.gif"
-                                    alt=""
+                                    src="https://i.giphy.com/media/T8Dhl1KPyzRqU/giphy.webp"
+                                    alt="searching the interwebz"
                                 />
                             </div>
                         )}
-                        <button ref={butRef} onClick={fetchMemez}>
+                        <button id="triggerButton" onClick={fetchMemez}>
                             fetch the memez
                         </button>
                     </div>
