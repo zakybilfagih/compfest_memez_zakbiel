@@ -54,11 +54,13 @@ function MemeApp() {
     const butRef = useRef();
     useLayoutEffect(() => {
         if (location.pathname !== "/discover") return;
+        console.log("heyyy");
         const observer = new IntersectionObserver(entries => {
             entries.forEach(e => setIntersect(e.isIntersecting));
         });
-        if (butRef.current)
-            setTimeout(() => observer.observe(butRef.current), 4000);
+        setTimeout(() => {
+            butRef && observer.observe(butRef.current);
+        }, 4000);
     }, [location]);
 
     useEffect(() => {

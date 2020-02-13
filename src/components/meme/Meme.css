@@ -27,6 +27,8 @@
 
 .caption {
     max-height: 0;
+    position: absolute;
+    bottom: 0;
     overflow: hidden;
     color: white;
     width: 100%;
