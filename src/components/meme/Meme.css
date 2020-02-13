@@ -39,9 +39,16 @@
 }
 
 .captionSave {
+    display: flex;
     align-self: center;
+    justify-content: flex-end;
+    align-items: center;
     flex-basis: 30%;
-    text-align: right;
+    color: #ffcb15;
+}
+
+.captionSave svg {
+    margin-right: 7px;
 }
 
 .cardWrapper:hover > .caption {

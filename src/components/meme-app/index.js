@@ -1,10 +1,5 @@
 import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Redirect
-} from "react-router-dom";
+import { Switch, Route, Redirect, useLocation } from "react-router-dom";
 
 import "./MemeApp.css";
 
@@ -13,6 +8,8 @@ import SavedMeme from "../saved-meme";
 import Nav from "../nav";
 
 function MemeApp() {
+    let location = useLocation();
+
     // handle storing memez
     const [memes, setMemes] = useState({ loading: true, memes: [], count: 0 });
     useEffect(() => {
@@ -47,15 +44,22 @@ function MemeApp() {
         );
     }, [search, memes.memes]);
 
+    // reset search when changing route
+    useEffect(() => {
+        setSearch("");
+    }, [location]);
+
     // handle scrolling ad infinitum
     const [intersect, setIntersect] = useState(false);
     const butRef = useRef();
     useLayoutEffect(() => {
+        if (location.pathname !== "/discover") return;
         const observer = new IntersectionObserver(entries => {
             entries.forEach(e => setIntersect(e.isIntersecting));
         });
-        if (!memes.loading && butRef.current) observer.observe(butRef.current);
-    });
+        if (butRef.current)
+            setTimeout(() => observer.observe(butRef.current), 4000);
+    }, [location]);
 
     useEffect(() => {
         if (intersect && !search) fetchMemez();
@@ -93,7 +97,7 @@ function MemeApp() {
     }
 
     return (
-        <Router>
+        <>
             <Nav setSearch={setSearch} search={search} />
             <Switch>
                 <Route exact path="/">
@@ -109,6 +113,11 @@ function MemeApp() {
                                               {...items}
                                               key={idx}
                                               toggleSave={toggleSaveMeme}
+                                              saved={
+                                                  saved.filter(
+                                                      s => s.url === items.url
+                                                  ).length === 1
+                                              }
                                           />
                                       );
                                   })
@@ -118,6 +127,11 @@ function MemeApp() {
                                               {...items}
                                               key={idx}
                                               toggleSave={toggleSaveMeme}
+                                              saved={
+                                                  saved.filter(
+                                                      s => s.url === items.url
+                                                  ).length === 1
+                                              }
                                           />
                                       );
                                   })}
@@ -136,10 +150,10 @@ function MemeApp() {
                     </div>
                 </Route>
                 <Route path="/saved">
-                    <SavedMeme {...{ toggleSaveMeme, saved, res, search }} />
+                    <SavedMeme {...{ toggleSaveMeme, saved, search }} />
                 </Route>
             </Switch>
-        </Router>
+        </>
     );
 }
 

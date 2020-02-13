@@ -30,6 +30,10 @@ function SavedMeme({ toggleSaveMeme, saved, search }) {
                                   {...items}
                                   key={idx}
                                   toggleSave={toggleSaveMeme}
+                                  saved={
+                                      saved.filter(s => s.url === items.url)
+                                          .length === 1
+                                  }
                               />
                           );
                       })
@@ -39,6 +43,10 @@ function SavedMeme({ toggleSaveMeme, saved, search }) {
                                   {...items}
                                   key={idx}
                                   toggleSave={toggleSaveMeme}
+                                  saved={
+                                      saved.filter(s => s.url === items.url)
+                                          .length === 1
+                                  }
                               />
                           );
                       })}
